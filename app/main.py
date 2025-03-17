@@ -1,8 +1,8 @@
 from fastapi import FastAPI, Depends
 from sqlalchemy.orm import Session
-from app import crud, schemas
 from crud import movie_controller as crud
 from schemas import movie_schema as schemas
+from db.database import Base, engine 
 from db.database import SessionLocal
 
 app = FastAPI()

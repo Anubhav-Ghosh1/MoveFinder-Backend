@@ -2,7 +2,7 @@ from sqlalchemy.orm import Session
 from schemas import movie_schema as schemas
 from models import movie_schema as models
 
-def create_movie(db: Session, movie: schemas.MovieCreate):
+def create_movie(db: Session, movie: schemas.MovieRequest):
     db_movie = models.Movie(**movie.dict())
     db.add(db_movie)
     db.commit()
@@ -15,7 +15,7 @@ def get_movies(db: Session, skip: int = 0, limit: int = 10):
 def get_movie_by_id(db: Session, movie_id: int):
     return db.query(models.Movie).filter(models.Movie.id == movie_id).first()
 
-def update_movie(db: Session, movie_id: int, movie: schemas.MovieCreate):
+def update_movie(db: Session, movie_id: int, movie: schemas.MovieRequest):
     db_movie = db.query(models.Movie).filter(models.Movie.id == movie_id).first()
     db_movie.title = movie.title or db_movie.title
     db_movie.director = movie.director or db_movie.director

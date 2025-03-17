@@ -27,4 +27,4 @@ class MovieResponse(BaseModel):
     imdb_rating: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True
